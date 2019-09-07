@@ -8553,6 +8553,11 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
+react-pinch-and-zoom@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-pinch-and-zoom/-/react-pinch-and-zoom-1.2.4.tgz#d63bdc4e7eb3b236a442780758af3f01728a34b2"
+  integrity sha512-b7a8T3gXstrACnMo2GbQ4UfDxj6IxD6pb2O5U0UrEiQQIC4fqBcDqBAZC2jjYVfuOflb0sQEp+j+8B/84SgQGg==
+
 react-router-dom@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.0.1.tgz#ee66f4a5d18b6089c361958e443489d6bab714be"

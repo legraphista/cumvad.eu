@@ -6,10 +6,30 @@ import {CanvasRender} from "./image-result";
 import ArrowUpward from '@material-ui/icons/ArrowUpward'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
+import PinchToZoom from "react-pinch-and-zoom";
 
 const useStyles = makeStyles(theme => ({
   fsItem: {
     background: theme.palette.background.default
+  },
+  actionButton: {
+    fontSize: '52px',
+    position: 'absolute',
+    zIndex: 1
+  },
+  left: {
+    left: 0
+  },
+  right: {
+    right: 0
+  },
+  zoomArea: {
+    zIndex: 0,
+    width: '100%',
+    height: '100%'
+  },
+  screenHeight: {
+    height: '100vh'
   }
 }));
 
@@ -21,8 +41,10 @@ export const Main = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   useEffect(() => {
-
-    const fullscreenChange = () => setIsFullScreen(!!document.fullscreenElement);
+    const fullscreenChange = () => {
+      setImageCollapsed(false);
+      setIsFullScreen(!!document.fullscreenElement);
+    };
     document.addEventListener("fullscreenchange", fullscreenChange);
 
     return function cleanup() {
@@ -37,22 +59,19 @@ export const Main = () => {
       </div>
       <Divider/>
       <div ref={canvasRenderRef} className={classes.fsItem}>
-        <ArrowUpward
-          onClick={() => setImageCollapsed(!imageCollapsed)}
-          style={{
-            transform: imageCollapsed ? '' : 'rotate(180deg)',
-            transition: 'transform .3s ease-out',
-            fontSize: '52px',
-            position: 'absolute'
-          }}
-        />
+        {!isFullScreen ?
+          <ArrowUpward
+            onClick={() => setImageCollapsed(!imageCollapsed)}
+            className={[classes.actionButton, classes.left].join(' ')}
+            style={{
+              transform: imageCollapsed ? '' : 'rotate(180deg)',
+              transition: 'transform .3s ease-out',
+            }}
+          /> : null}
+
         {!isFullScreen ?
           <Fullscreen
-            style={{
-              fontSize: '52px',
-              position: 'absolute',
-              right: 0
-            }}
+            className={[classes.actionButton, classes.right].join(' ')}
             onClick={() =>
               canvasRenderRef.current &&
               canvasRenderRef.current
@@ -61,19 +80,25 @@ export const Main = () => {
             }
           /> :
           <FullscreenExit
-            style={{
-              fontSize: '52px',
-              position: 'absolute',
-              right: 0
-            }}
+            className={[classes.actionButton, classes.right].join(' ')}
             onClick={() =>
               document.exitFullscreen()
                 .then(() => setIsFullScreen(false))
             }
           />
         }
-        <Collapse in={!imageCollapsed} collapsedHeight={'60px'}>
-          <CanvasRender/>
+        <Collapse in={!imageCollapsed} collapsedHeight={'60px'} style={{height: '100%'}}>
+          <PinchToZoom
+            debug={false}
+            className={[
+              classes.zoomArea,
+              isFullScreen ? classes.screenHeight : ''
+            ].join(' ')}
+            minZoomScale={0.9}
+            maxZoomScale={5}
+          >
+            <CanvasRender/>
+          </PinchToZoom>
         </Collapse>
       </div>
     </div>
