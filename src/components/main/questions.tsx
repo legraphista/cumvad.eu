@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import {observer} from 'mobx-react-lite'
 import {QuestionIDs} from "./questions-list/common";
 import {QuestionList} from "./questions-list";
-import {toJS} from "mobx";
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -54,6 +53,7 @@ export const Question = observer(({q_id}: { q_id: QuestionIDs }) => {
                 return (
                   <div key={i} className="full-width">
                     <FormControlLabel
+                      className="full-width"
                       key={a.id.toString()}
                       value={a.id.toString()}
                       control={<Radio/>}

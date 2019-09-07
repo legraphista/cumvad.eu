@@ -1,8 +1,7 @@
 import {action, observable, toJS} from 'mobx'
-import React, {createContext} from "react";
+import {createContext} from "react";
 import {IQuestion, QuestionList} from "./questions-list";
 import {QuestionIDs} from "./questions-list/common";
-
 
 class QuestionStoreClass {
 

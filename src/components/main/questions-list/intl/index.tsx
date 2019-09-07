@@ -1,6 +1,3 @@
-import {QuestionIDs} from "../common";
-
-
 export interface IIntlQuestion<AnswerEnum extends string> {
   question: string,
   answers: {
@@ -13,7 +10,7 @@ export interface IIntlQuestion<AnswerEnum extends string> {
 
 export type Languages = 'ro';
 
-export type IIntlObject<AnswerEnum extends string>  = {
+export type IIntlObject<AnswerEnum extends string> = {
   [s in Languages]: IIntlQuestion<AnswerEnum>
 }
 
