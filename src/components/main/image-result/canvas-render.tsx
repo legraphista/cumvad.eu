@@ -1,9 +1,8 @@
 import {observer} from "mobx-react-lite";
-import React, {RefObject, useContext, useEffect, useRef, useState} from "react";
+import React, {RefObject, useContext, useEffect, useRef} from "react";
 import {QuestionStore} from "../question-store";
 import {QuestionIDs} from "../questions-list/common";
 import {IQuestion} from "../questions-list";
-import angles from './angles.png';
 
 async function imageLoad(img: HTMLImageElement) {
   if (img.complete) return;
@@ -71,8 +70,7 @@ async function renderCanvas(image: HTMLImageElement, questions: ({ [s in Questio
     canvas.width, canvas.height);
 }
 
-
-export type CanvasRenderProps={
+export type CanvasRenderProps = {
   currentImage: HTMLImageElement
 }
 
