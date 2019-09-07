@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dda74d0-c21d-45f3-a81a-cc094d143c10" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/main/image-result/panel.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/angles.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/angles.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/main/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/questions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/questions.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567848706917</updated>
-      <workItem from="1567848708873" duration="27986000" />
+      <workItem from="1567848708873" duration="31976000" />
     </task>
     <task id="LOCAL-00001" summary="add: initial commit with structure of questions">
       <created>1567864892505</created>
@@ -103,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567874794145</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add: canvas pinch zoom">
+      <created>1567882004934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1567882004934</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +132,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add: initial commit with structure of questions" />
     <MESSAGE value="add: canvas and reworked main page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: canvas and reworked main page" />
+    <MESSAGE value="add: canvas pinch zoom" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: canvas pinch zoom" />
   </component>
 </project>

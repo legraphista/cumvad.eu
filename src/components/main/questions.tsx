@@ -11,7 +11,7 @@ import {QuestionList} from "./questions-list";
 const useStyles = makeStyles(theme => ({
   gridList: {
     backgroundColor: theme.palette.background.default,
-    padding: '16px',
+    padding: '16px'
   },
 }));
 
@@ -77,7 +77,7 @@ export const Questions = () => {
   const classes = useStyles();
 
   return (
-    <GridList cols={1} className={classes.gridList} cellHeight={'auto'}>
+    <GridList cols={1} className={classes.gridList} cellHeight={'auto'} style={{margin: 0}}>
       {
         QuestionList.map((q, i) => <Question key={i} q_id={q.question.id}/>)
       }

@@ -1,8 +1,7 @@
 import {observer} from "mobx-react-lite";
-import React, {forwardRef, RefObject, useContext, useEffect, useRef} from "react";
+import React, {RefObject, useContext, useEffect, useRef, useState} from "react";
 import {QuestionStore} from "../question-store";
 import {QuestionIDs} from "../questions-list/common";
-import {TestQuestionAnswerIDs} from "../questions-list/test";
 import {IQuestion} from "../questions-list";
 import angles from './angles.png';
 
@@ -63,11 +62,8 @@ async function renderCanvas(image: HTMLImageElement, questions: ({ [s in Questio
   canvas.width /= scale;
   canvas.height /= scale;
 
-  ctx.fillStyle = 'red';
-  ctx.fillRect(0, 0, 100, 100);
-
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = "high";
+  ctx.imageSmoothingEnabled = false;
+  // ctx.imageSmoothingQuality = "high";
   ctx.drawImage(image,
     0, 0,
     imageWidth, imageHeight,
@@ -75,26 +71,26 @@ async function renderCanvas(image: HTMLImageElement, questions: ({ [s in Questio
     canvas.width, canvas.height);
 }
 
-export const CanvasRender = observer((props, ref: React.Ref<HTMLDivElement>) => {
+
+export type CanvasRenderProps={
+  currentImage: HTMLImageElement
+}
+
+export const CanvasRender = observer(({currentImage}: CanvasRenderProps, ref: React.Ref<HTMLDivElement>) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const state = useContext(QuestionStore);
 
   const questions = state.questions;
 
-  const img = new Image();
-  img.src = angles;
-
   useEffect(() => {
     updateCanvasSize(canvasRef);
-    renderCanvas(img, questions, canvasRef);
+    renderCanvas(currentImage, questions, canvasRef);
   });
 
   return (
     <div ref={ref} className="full-width full-height" style={{display: 'flex'}}>
-      <canvas ref={canvasRef} className="full-height" style={{margin: "0 auto", border: '1px solid red'}}>
-
-      </canvas>
+      <canvas ref={canvasRef} className="full-height" style={{margin: "0 auto"}}/>
     </div>
   )
 
