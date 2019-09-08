@@ -36,7 +36,7 @@ export const DoubleVisionQuestion: IQuestion<YesNoQuestionIds, DoubleVisionQuest
               min={0}
               max={0.15}
               value={intensity}
-              step={0.01}
+              step={0.005}
               onChange={(e, v) => setExtraData({
                 ...extraData,
                 intensity: v as number

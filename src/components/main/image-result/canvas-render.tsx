@@ -97,8 +97,6 @@ export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in 
 
   const qlist = Object.keys(questions).map((q_id) => questions[q_id as QuestionIDs])
 
-  canvas.style.filter = '';
-
   for (let i = 0; i < qlist.length; i++) {
     const q = qlist[i];
 

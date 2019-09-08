@@ -40,15 +40,25 @@ export const BlurQuestion: IQuestion<YesNoQuestionIds, BlurQuestionExtraData> = 
   selected: {
     id: YesNoQuestionIds.no
   },
-  effect: (ctx: CanvasRenderingContext2D, {id, extraData}) => {
-    if(id === YesNoQuestionIds.no ){
+  effect: (ctx: CanvasRenderingContext2D, {id, extraData}, {original}) => {
+    if (id === YesNoQuestionIds.no) {
       return;
     }
 
     const canvas = ctx.canvas;
     const blur = (extraData && extraData.intensity) || 0;
 
-    canvas.style.filter += ` blur(${blur}px)`;
+    // canvas.style.filter += ` blur(${blur}px)`;
+
+    ctx.filter = `blur(${blur}px)`;
+    ctx.drawImage(
+      original,
+      0, 0,
+      original.width, original.height,
+      0, 0,
+      canvas.width, canvas.height
+    );
+    ctx.filter = 'none';
   }
 };
 
