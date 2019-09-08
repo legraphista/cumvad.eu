@@ -11,6 +11,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^4.3.5",
     "@types/uuid": "^3.4.5",
+    "gaussian-convolution-kernel": "1.0.0",
     "mobx": "^5.13.0",
     "mobx-react-lite": "^1.4.1",
     "react": "^16.9.0",

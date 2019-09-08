@@ -64,6 +64,7 @@ async function initCanvas(image: HTMLImageElement, canvasRef: RefObject<HTMLCanv
 }
 
 let last_render: string = uuid();
+
 export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>) {
   const this_render = uuid();
   last_render = this_render;
@@ -86,6 +87,8 @@ export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in 
   console.log('rendering canvas', new Date());
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.imageSmoothingEnabled = false;
   // ctx.imageSmoothingQuality = "high";
@@ -124,8 +127,10 @@ export type CanvasRenderProps = {
   currentImage: HTMLImageElement
 }
 
-export const CanvasRender = observer(({currentImage}: CanvasRenderProps, ref: React.Ref<HTMLDivElement>) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+export const CanvasRender = observer(({currentImage}: CanvasRenderProps, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+  if (!canvasRef) {
+    canvasRef = useRef<HTMLCanvasElement>(null);
+  }
 
   const state = useContext(QuestionStore);
 
@@ -141,7 +146,7 @@ export const CanvasRender = observer(({currentImage}: CanvasRenderProps, ref: Re
   });
 
   return (
-    <div ref={ref} className="full-width full-height" style={{display: 'flex'}}>
+    <div className="full-width full-height" style={{display: 'flex'}}>
       <canvas ref={canvasRef} className="full-height" style={{margin: "0 auto"}}/>
     </div>
   )
