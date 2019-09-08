@@ -1,0 +1,30 @@
+name: Deploy Github Page
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Node setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install yarn & dependencies
+        run: npm i -g yarn && yarn install
+      - name: Generate files
+        run: yarn build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./build

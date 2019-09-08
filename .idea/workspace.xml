@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8dda74d0-c21d-45f3-a81a-cc094d143c10" name="Default Changelist" comment="fi: save button">
+    <list default="true" id="8dda74d0-c21d-45f3-a81a-cc094d143c10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/image-manip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/image-manip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/main/question-store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/question-store.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <list id="0795818d-9b08-4d76-8f50-d96e0b240024" name="fix: blur not showing in exported image" comment="fix: blur not showing in exported image">
       <changelist_data name="Stefan-Gabriel Muscalu" email="stefan.gabriel.muscalu@gmail.com" date="1567949915000" />
@@ -139,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567950386638</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add: show original button">
+      <created>1567951528013</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1567951528013</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +171,7 @@
     <MESSAGE value="add: multi image tabs + custom image" />
     <MESSAGE value="update: refactor canvas stuff" />
     <MESSAGE value="update: blur using ctx filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: blur using ctx filter" />
+    <MESSAGE value="add: show original button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: show original button" />
   </component>
 </project>
