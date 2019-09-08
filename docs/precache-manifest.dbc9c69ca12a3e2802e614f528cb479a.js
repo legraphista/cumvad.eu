@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1fb1a4a17be2e13c4b62d009e720aaeb",
+    "revision": "c929ab858fd10d2729e1e429d48df57f",
     "url": "/cumvad.eu/index.html"
   },
   {
-    "revision": "f5526859182abf09d2b3",
+    "revision": "d10db3ed9797919c8cf1",
     "url": "/cumvad.eu/static/css/main.4e32aa64.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cumvad.eu/static/js/2.e4161383.chunk.js"
   },
   {
-    "revision": "f5526859182abf09d2b3",
-    "url": "/cumvad.eu/static/js/main.e4abd9ce.chunk.js"
+    "revision": "d10db3ed9797919c8cf1",
+    "url": "/cumvad.eu/static/js/main.87a820ed.chunk.js"
   },
   {
     "revision": "c7c4bbfddc8f48db78e2",
