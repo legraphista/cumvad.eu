@@ -9,6 +9,8 @@ import ArrowUpward from '@material-ui/icons/ArrowUpward'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
 import SaveIcon from '@material-ui/icons/SaveAlt'
+import EyeIcon from "@material-ui/icons/RemoveRedEye"
+import RemoveIcon from "@material-ui/icons/Remove"
 import {CanvasRender} from "./canvas-render";
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +43,9 @@ const useStyles = makeStyles(theme => ({
   center: {
     margin: '0 auto',
     alignSelf: 'center'
+  },
+  crossedOutMark: {
+    transform: 'rotate(45deg) scale(1.5)'
   }
 }));
 
@@ -102,7 +107,7 @@ const resizeImage = (img: HTMLImageElement, maxSize = 2000): HTMLImageElement =>
   const newImg = new Image(iw, ih);
   newImg.src = canvas.toDataURL('image/png');
   return newImg;
-}
+};
 
 const defaultImages = {
   angles: src2img(angles),
@@ -193,8 +198,18 @@ export const ImageManip = observer(() => {
 
       <SaveIcon
         className={[classes.actionButton, classes.right, classes.bottom].join(' ')}
-        onClick={() => saveCanvas(state.registeredCanvas)}
+        onClick={() => !state.showOriginal && saveCanvas(state.registeredCanvas)}
+        opacity={state.showOriginal ? .5 : 1}
       />
+      <EyeIcon
+        className={[classes.actionButton, classes.bottom, classes.left].join(' ')}
+        onClick={() => state.setShowOriginal(true)}
+      />
+      {state.showOriginal ?
+        <RemoveIcon
+          className={[classes.actionButton, classes.bottom, classes.left, classes.crossedOutMark].join(' ')}
+          onClick={() => state.setShowOriginal(false)}
+        /> : null}
 
       <Collapse in={!imageCollapsed} collapsedHeight={'120px'}>
         <Tabs

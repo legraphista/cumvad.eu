@@ -14,6 +14,13 @@ class QuestionStoreClass {
     {} as ({ [s in QuestionIDs]: IQuestion<any> })
   );
 
+  @observable showOriginal = false;
+
+  @action setShowOriginal(b: boolean) {
+    this.showOriginal = b;
+    this._renderCanvas();
+  }
+
   @action setAnswer<AnswerEnum, AnswerExtraData>(q_id: QuestionIDs, a_id: AnswerEnum, extraData?: AnswerExtraData) {
     const question = this.questions[q_id];
 
@@ -44,7 +51,7 @@ class QuestionStoreClass {
   private _renderCanvas() {
     requestAnimationFrame(() => {
       if (this.registeredImage && this.registeredCanvas) {
-        renderCanvas(this.registeredImage, this.questions, this.registeredCanvas)
+        renderCanvas(this.registeredImage, this.questions, this.registeredCanvas, this.showOriginal)
       }
     });
   }

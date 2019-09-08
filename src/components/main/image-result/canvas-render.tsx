@@ -65,7 +65,7 @@ async function initCanvas(image: HTMLImageElement, canvasRef: RefObject<HTMLCanv
 
 let last_render: string = uuid();
 
-export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>) {
+export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>, showOriginal: boolean) {
   const this_render = uuid();
   last_render = this_render;
 
@@ -98,26 +98,27 @@ export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in 
     0, 0,
     canvas.width, canvas.height);
 
-  const qlist = Object.keys(questions).map((q_id) => questions[q_id as QuestionIDs])
+  if (!showOriginal) {
+    const qlist = Object.keys(questions).map((q_id) => questions[q_id as QuestionIDs])
 
-  for (let i = 0; i < qlist.length; i++) {
-    const q = qlist[i];
+    for (let i = 0; i < qlist.length; i++) {
+      const q = qlist[i];
 
-    await new Promise(_ => requestAnimationFrame(_));
+      await new Promise(_ => requestAnimationFrame(_));
 
-    // this is here to break the chain of the previous render if a new one is initiated
-    if (last_render === this_render) {
-      const key = `canvas-${q.question.id}`;
-      console.time(key);
-      q.effect(ctx, q.selected, {
-        original: image
-      });
-      console.timeEnd(key);
-    } else {
-      console.log('break render', this_render, last_render);
-      break;
+      // this is here to break the chain of the previous render if a new one is initiated
+      if (last_render === this_render) {
+        const key = `canvas-${q.question.id}`;
+        console.time(key);
+        q.effect(ctx, q.selected, {
+          original: image
+        });
+        console.timeEnd(key);
+      } else {
+        console.log('break render', this_render, last_render);
+        break;
+      }
     }
-
   }
 
 
@@ -142,7 +143,7 @@ export const CanvasRender = observer(({currentImage}: CanvasRenderProps, canvasR
   useEffect(() => {
     updateCanvasSize(canvasRef);
     initCanvas(currentImage, canvasRef)
-      .then(() => renderCanvas(currentImage, questions, canvasRef))
+      .then(() => renderCanvas(currentImage, questions, canvasRef, state.showOriginal))
   });
 
   return (
