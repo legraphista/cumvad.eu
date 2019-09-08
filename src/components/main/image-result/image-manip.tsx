@@ -1,5 +1,5 @@
 import {observer} from "mobx-react-lite";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {RefObject, useContext, useEffect, useRef, useState} from "react";
 import {QuestionStore} from "../question-store";
 import angles from './angles.png';
 import {Collapse, makeStyles, Tab, Tabs} from "@material-ui/core";
@@ -8,8 +8,8 @@ import panel from "./panel.png";
 import ArrowUpward from '@material-ui/icons/ArrowUpward'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
+import SaveIcon from '@material-ui/icons/SaveAlt'
 import {CanvasRender} from "./canvas-render";
-import {isMainThread} from "worker_threads";
 
 const useStyles = makeStyles(theme => ({
   fsItem: {
@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   },
   right: {
     right: 0
+  },
+  bottom: {
+    bottom: 0
   },
   zoomArea: {
     zIndex: 0,
@@ -105,6 +108,32 @@ const defaultImages = {
   panel: src2img(panel)
 };
 
+const saveCanvas = (c: RefObject<HTMLCanvasElement> | null, f: string = 'image.png') => {
+  if (!c || !c.current) {
+    return;
+  }
+  const blobStr = c.current.toDataURL('image/png').substr('data:image/png;base64,'.length);
+  const blobDecoded = atob(blobStr);
+  console.log(blobStr);
+  const blobArrayBuffer = new ArrayBuffer(blobDecoded.length);
+  const blobUint8 = new Uint8Array(blobArrayBuffer);
+
+  for (let i = 0; i < blobDecoded.length; i += 1) {
+    blobUint8[i] = blobDecoded.charCodeAt(i);
+  }
+
+  const blob = new Blob(
+    [blobUint8],
+    {type: 'image/png'}
+  );
+  const blobURL = URL.createObjectURL(blob);
+
+  const dl = document.createElement('a');
+  dl.download = f;
+  dl.href = blobURL;
+  dl.click();
+};
+
 export const ImageManip = observer(() => {
   const classes = useStyles();
   const state = useContext(QuestionStore);
@@ -120,7 +149,8 @@ export const ImageManip = observer(() => {
     }
   }, []);
 
-  const canvasRenderRef = useRef<HTMLDivElement>(null);
+  const canvasHolderRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [imageCollapsed, setImageCollapsed] = useState(false);
@@ -129,7 +159,7 @@ export const ImageManip = observer(() => {
   const [currentImage, setCurrentImage] = useState(defaultImages.angles);
 
   return (
-    <div ref={canvasRenderRef} className={classes.fsItem}>
+    <div ref={canvasHolderRef} className={classes.fsItem}>
 
       {!isFullScreen ?
         <ArrowUpward
@@ -145,8 +175,8 @@ export const ImageManip = observer(() => {
         <Fullscreen
           className={[classes.actionButton, classes.right].join(' ')}
           onClick={() =>
-            canvasRenderRef.current &&
-            canvasRenderRef.current
+            canvasHolderRef.current &&
+            canvasHolderRef.current
               .requestFullscreen({navigationUI: 'hide'})
               .then(() => setIsFullScreen(true))
           }
@@ -159,6 +189,12 @@ export const ImageManip = observer(() => {
           }
         />
       }
+
+      <SaveIcon
+        className={[classes.actionButton, classes.right, classes.bottom].join(' ')}
+        onClick={() => saveCanvas(state.registeredCanvas)}
+      />
+
       <Collapse in={!imageCollapsed} collapsedHeight={'120px'}>
         <Tabs
           value={tabValue}

@@ -4584,6 +4584,11 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+gaussian-convolution-kernel@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gaussian-convolution-kernel/-/gaussian-convolution-kernel-1.0.0.tgz#a8d6a44d838d8d2191ef515897f7ed2ab4e39976"
+  integrity sha1-qNakTYONjSGR71FYl/ftKrTjmXY=
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
