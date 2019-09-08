@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dda74d0-c21d-45f3-a81a-cc094d143c10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/main/image-result/image-manip.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/main/questions-list/questions/_helpers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/main/questions-list/questions/chromatic-aberration.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/main/questions-list/questions/double-vision.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/main/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/image-result/image-manip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/image-result/image-manip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/question-store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/question-store.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/question.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/question.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/questions-list/common.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/questions-list/common.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/questions-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/questions-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main/questions-list/test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/questions-list/questions/blur.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/main/image-result" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/main/questions-list/questions" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -44,11 +53,14 @@
     <property name="ts.external.directory.path" value="D:\Stefan\work\cumvad.eu\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Stefan\work\cumvad.eu\src\components\main\image-result" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Stefan\work\cumvad.eu\src\components\main\questions-list\questions" />
       <recent name="D:\Stefan\work\cumvad.eu\src\components\main" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Stefan\work\cumvad.eu\src\components\main\questions-list\questions" />
+      <recent name="D:\Stefan\work\cumvad.eu\src\components\main\questions-list" />
+      <recent name="D:\Stefan\work\cumvad.eu\src\components\main\image-result" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -88,7 +100,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567848706917</updated>
-      <workItem from="1567848708873" duration="32639000" />
+      <workItem from="1567848708873" duration="33080000" />
+      <workItem from="1567928391322" duration="15026000" />
     </task>
     <task id="LOCAL-00001" summary="add: initial commit with structure of questions">
       <created>1567864892505</created>
@@ -118,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567885909752</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update: refactor canvas stuff">
+      <created>1567886588179</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1567886588179</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +149,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -140,15 +162,15 @@
     <MESSAGE value="add: canvas and reworked main page" />
     <MESSAGE value="add: canvas pinch zoom" />
     <MESSAGE value="add: multi image tabs + custom image" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: multi image tabs + custom image" />
+    <MESSAGE value="update: refactor canvas stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: refactor canvas stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/main/image-result/canvas-render.tsx</url>
-          <line>29</line>
-          <properties lambdaOrdinal="-1" />
+          <line>66</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

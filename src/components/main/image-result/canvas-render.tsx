@@ -3,6 +3,7 @@ import React, {RefObject, useContext, useEffect, useRef} from "react";
 import {QuestionStore} from "../question-store";
 import {QuestionIDs} from "../questions-list/common";
 import {IQuestion} from "../questions-list";
+import uuid from 'uuid';
 
 async function imageLoad(img: HTMLImageElement) {
   if (img.complete) return;
@@ -27,7 +28,7 @@ function updateCanvasSize(canvasRef: RefObject<HTMLCanvasElement>) {
   canvas.height = canvas.offsetHeight;
 }
 
-async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>) {
+async function initCanvas(image: HTMLImageElement, canvasRef: RefObject<HTMLCanvasElement>) {
   if (!canvasRef.current) {
     console.warn('we don\'t have a canvas yet!');
     return;
@@ -60,6 +61,31 @@ async function renderCanvas(image: HTMLImageElement, questions: ({ [s in Questio
   canvas.style.height = canvasHeight + "px";
   canvas.width /= scale;
   canvas.height /= scale;
+}
+
+let last_render: string = uuid();
+export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>) {
+  const this_render = uuid();
+  last_render = this_render;
+
+  if (!canvasRef.current) {
+    console.warn('we don\'t have a canvas yet!');
+    return;
+  }
+
+  const canvas = canvasRef.current;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.warn('we don\'t have a ctx yet!');
+    return;
+  }
+  const imageWidth = image.width;
+  const imageHeight = image.height;
+
+  console.log('rendering canvas', new Date());
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   ctx.imageSmoothingEnabled = false;
   // ctx.imageSmoothingQuality = "high";
@@ -68,6 +94,32 @@ async function renderCanvas(image: HTMLImageElement, questions: ({ [s in Questio
     imageWidth, imageHeight,
     0, 0,
     canvas.width, canvas.height);
+
+  const qlist = Object.keys(questions).map((q_id) => questions[q_id as QuestionIDs])
+
+  canvas.style.filter = '';
+
+  for (let i = 0; i < qlist.length; i++) {
+    const q = qlist[i];
+
+    await new Promise(_ => requestAnimationFrame(_));
+
+    // this is here to break the chain of the previous render if a new one is initiated
+    if (last_render === this_render) {
+      const key = `canvas-${q.question.id}`;
+      console.time(key);
+      q.effect(ctx, q.selected, {
+        original: image
+      });
+      console.timeEnd(key);
+    } else {
+      console.log('break render', this_render, last_render);
+      break;
+    }
+
+  }
+
+
 }
 
 export type CanvasRenderProps = {
@@ -81,9 +133,13 @@ export const CanvasRender = observer(({currentImage}: CanvasRenderProps, ref: Re
 
   const questions = state.questions;
 
+  state.registeredCanvas = canvasRef;
+  state.registeredImage = currentImage;
+
   useEffect(() => {
     updateCanvasSize(canvasRef);
-    renderCanvas(currentImage, questions, canvasRef);
+    initCanvas(currentImage, canvasRef)
+      .then(() => renderCanvas(currentImage, questions, canvasRef))
   });
 
   return (

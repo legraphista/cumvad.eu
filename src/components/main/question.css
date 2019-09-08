@@ -15,7 +15,7 @@
     font-size: 1.5em;
     display: flex;
     align-items: center;
-    padding-left: 8px;
+    padding: 8px;
 }
 
 .question .header > * {
@@ -23,7 +23,7 @@
 }
 
 .question .content {
-    padding: 4px 4px 4px 8px;
+    padding: 0 12px;
 }
 
 .question .answer {

@@ -9,13 +9,14 @@ import ArrowUpward from '@material-ui/icons/ArrowUpward'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
 import {CanvasRender} from "./canvas-render";
+import {isMainThread} from "worker_threads";
 
 const useStyles = makeStyles(theme => ({
   fsItem: {
     background: theme.palette.background.default
   },
   actionButton: {
-    fontSize: '50px',
+    fontSize: '48px',
     position: 'absolute',
     zIndex: 1
   },
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   zoomArea: {
     zIndex: 0,
     width: '100%',
-    height: '100%'
+    // height: '100%'
   },
   screenHeight: {
     height: '100vh'
@@ -61,6 +62,43 @@ const file2img = async (file: File): Promise<HTMLImageElement> => {
 
   return img;
 };
+const resizeImage = (img: HTMLImageElement, maxSize = 2000): HTMLImageElement => {
+
+  const i_ar = img.width / img.height;
+  let iw = img.width;
+  let ih = img.height;
+
+  if (iw > maxSize) {
+    iw = maxSize;
+    ih = iw / i_ar;
+  }
+  if (ih > maxSize) {
+    ih = maxSize;
+    iw = ih * i_ar;
+  }
+
+  const canvas = document.createElement('canvas');
+  canvas.width = iw;
+  canvas.height = ih;
+
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) {
+    return img;
+  }
+
+  ctx.drawImage(
+    img,
+    0, 0,
+    img.width, img.height,
+    0, 0,
+    iw, ih
+  );
+
+  const newImg = new Image(iw, ih);
+  newImg.src = canvas.toDataURL('image/png');
+  return newImg;
+}
 
 const defaultImages = {
   angles: src2img(angles),
@@ -85,7 +123,7 @@ export const ImageManip = observer(() => {
   const canvasRenderRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [imageCollapsed, setImageCollapsed] = useState(true);
+  const [imageCollapsed, setImageCollapsed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [currentImage, setCurrentImage] = useState(defaultImages.angles);
@@ -142,7 +180,14 @@ export const ImageManip = observer(() => {
             e.target &&
             e.target.files &&
             e.target.files[0] &&
-            file2img(e.target.files[0]).then(setCurrentImage)
+            file2img(e.target.files[0])
+              .then(resizeImage)
+              .then((img) => {
+                setCurrentImage(img);
+                if (inputRef.current) {
+                  inputRef.current.value = '';
+                }
+              })
           }
         />
 
