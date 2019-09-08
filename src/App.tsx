@@ -5,7 +5,7 @@ import {Main} from "./components/main";
 
 function App() {
   return (
-    <Router>
+    <Router basename={'cumvad.eu'}>
       {/*<div>*/}
       {/*  <ul>*/}
       {/*    <li>*/}
