@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.4e32aa64.chunk.css",
-    "main.js": "/static/js/main.f0051d1a.chunk.js",
-    "main.js.map": "/static/js/main.f0051d1a.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.4c1b4f45.js",
-    "runtime~main.js.map": "/static/js/runtime~main.4c1b4f45.js.map",
-    "static/js/2.7e8c0348.chunk.js": "/static/js/2.7e8c0348.chunk.js",
-    "static/js/2.7e8c0348.chunk.js.map": "/static/js/2.7e8c0348.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.65d47c770dce35a78e71436eaeffa623.js": "/precache-manifest.65d47c770dce35a78e71436eaeffa623.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.4e32aa64.chunk.css.map": "/static/css/main.4e32aa64.chunk.css.map",
-    "static/media/angles.png": "/static/media/angles.062caee1.png",
-    "static/media/panel.png": "/static/media/panel.c5657b9f.png"
+    "main.css": "/cumvad.eu/static/css/main.4e32aa64.chunk.css",
+    "main.js": "/cumvad.eu/static/js/main.e4abd9ce.chunk.js",
+    "main.js.map": "/cumvad.eu/static/js/main.e4abd9ce.chunk.js.map",
+    "runtime~main.js": "/cumvad.eu/static/js/runtime~main.78d1caa8.js",
+    "runtime~main.js.map": "/cumvad.eu/static/js/runtime~main.78d1caa8.js.map",
+    "static/js/2.e4161383.chunk.js": "/cumvad.eu/static/js/2.e4161383.chunk.js",
+    "static/js/2.e4161383.chunk.js.map": "/cumvad.eu/static/js/2.e4161383.chunk.js.map",
+    "index.html": "/cumvad.eu/index.html",
+    "precache-manifest.a1dc8543451cef9a0c98235824dd2842.js": "/cumvad.eu/precache-manifest.a1dc8543451cef9a0c98235824dd2842.js",
+    "service-worker.js": "/cumvad.eu/service-worker.js",
+    "static/css/main.4e32aa64.chunk.css.map": "/cumvad.eu/static/css/main.4e32aa64.chunk.css.map",
+    "static/media/angles.png": "/cumvad.eu/static/media/angles.062caee1.png",
+    "static/media/panel.png": "/cumvad.eu/static/media/panel.c5657b9f.png"
   }
 }
