@@ -3,6 +3,18 @@ import {QuestionIDs, YesNoQuestionIds} from "../common";
 import {IQuestion} from "../index";
 import {Box, Slider, Typography} from "@material-ui/core";
 import {AngleMarks} from "./_helpers";
+import {CustomIcon} from "../../../custom-icon";
+
+import Intensity0 from './assets/chromatic-aberaqtion/intensity0.png';
+import Intensity25 from './assets/chromatic-aberaqtion/intensity25.png';
+import Intensity50 from './assets/chromatic-aberaqtion/intensity50.png';
+
+import Phase0 from './assets/chromatic-aberaqtion/phase0.png';
+import Phase1 from './assets/chromatic-aberaqtion/phase1.png';
+import Phase2 from './assets/chromatic-aberaqtion/phase2.png';
+
+
+
 
 export interface ChromaticAberrationQuestionExtraData {
   intensity: number
@@ -35,6 +47,11 @@ export const ChromaticAberrationQuestion: IQuestion<YesNoQuestionIds, ChromaticA
               min={0}
               max={15}
               value={intensity}
+              marks={[
+                {value: 0, label: <CustomIcon src={Intensity0}/>},
+                {value: 7.5, label: <CustomIcon src={Intensity25}/>},
+                {value: 15, label: <CustomIcon src={Intensity50}/>},
+              ]}
               step={1}
               onChange={(e, v) => setExtraData({
                 ...extraData,
@@ -59,6 +76,11 @@ export const ChromaticAberrationQuestion: IQuestion<YesNoQuestionIds, ChromaticA
               max={2}
               value={phase}
               step={1}
+              marks={[
+                {value: 0, label: <CustomIcon src={Phase0}/>},
+                {value: 1, label: <CustomIcon src={Phase1}/>},
+                {value: 2, label: <CustomIcon src={Phase2}/>},
+              ]}
               onChange={(e, v) => setExtraData({
                 ...extraData,
                 phase: v as number

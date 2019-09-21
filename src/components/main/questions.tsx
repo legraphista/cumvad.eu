@@ -1,4 +1,4 @@
-import {Collapse, FormControlLabel, GridList, makeStyles, Paper, Radio, RadioGroup} from "@material-ui/core";
+import {Collapse, FormControlLabel, GridList, makeStyles, Paper, Radio, RadioGroup, Divider} from "@material-ui/core";
 import React, {useContext, useState} from "react";
 import {QuestionStore} from "./question-store";
 import './question.css'
@@ -59,6 +59,7 @@ export const Question = observer(({q_id}: { q_id: QuestionIDs }) => {
                       control={<Radio/>}
                       label={a.string}
                     />
+                    {ExtraComponent ? <Divider/> : null}
                     {ExtraComponent}
                   </div>
                 )

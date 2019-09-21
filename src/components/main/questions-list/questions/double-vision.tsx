@@ -5,6 +5,17 @@ import {Box, Slider, Typography} from "@material-ui/core";
 import {isMainThread} from "worker_threads";
 import {AngleMarks} from "./_helpers";
 
+import Distance0 from './assets/double-vision/distance0.png'
+import Distance50 from './assets/double-vision/distance50.png'
+import Distance100 from './assets/double-vision/distance100.png'
+
+import Intensity0 from './assets/double-vision/intensity0.png'
+import Intensity25 from './assets/double-vision/intensity25.png'
+import Intensity50 from './assets/double-vision/intensity50.png'
+import Intensity75 from './assets/double-vision/intensity75.png'
+import Intensity100 from './assets/double-vision/intensity100.png'
+import {CustomIcon} from "../../../custom-icon";
+
 export interface DoubleVisionQuestionExtraData {
   intensity: number
   angle: number
@@ -31,23 +42,35 @@ export const DoubleVisionQuestion: IQuestion<YesNoQuestionIds, DoubleVisionQuest
         const alpha = extraData ? extraData.alpha : 0;
         return (
           <Box>
-            <Typography> Separation intensity </Typography>
+            <Typography> Distance </Typography>
             <Slider
               min={0}
               max={0.15}
               value={intensity}
               step={0.005}
+              marks={[
+                {value: 0, label: <CustomIcon src={Distance0}/>},
+                {value: 0.075, label: <CustomIcon src={Distance50}/>},
+                {value: 0.15, label: <CustomIcon src={Distance100}/>}
+              ]}
               onChange={(e, v) => setExtraData({
                 ...extraData,
                 intensity: v as number
               })}
             />
-            <Typography> Image intensity </Typography>
+            <Typography> Intensity </Typography>
             <Slider
               min={0}
               max={1}
               value={alpha}
               step={0.05}
+              marks={[
+                {value: 0, label: <CustomIcon src={Intensity0}/>},
+                {value: 0.25, label: <CustomIcon src={Intensity25}/>},
+                {value: 0.50, label: <CustomIcon src={Intensity50}/>},
+                {value: 0.75, label: <CustomIcon src={Intensity75}/>},
+                {value: 1, label: <CustomIcon src={Intensity100}/>},
+              ]}
               onChange={(e, v) => setExtraData({
                 ...extraData,
                 alpha: v as number

@@ -23,7 +23,11 @@
 }
 
 .question .content {
-    padding: 0 12px;
+    padding: 8px 12px;
+}
+.question .content .MuiBox-root {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .question .answer {
@@ -31,3 +35,4 @@
     transition: height 0.3s ease-out;
     height: auto;
 }
+

@@ -1,8 +1,11 @@
 import React from "react";
 import {QuestionIDs, YesNoQuestionIds} from "../common";
 import {IQuestion} from "../index";
-import {Box, Slider, Typography} from "@material-ui/core";
-
+import {Box, Icon, Slider, Typography} from "@material-ui/core";
+import Blur0 from './assets/blur/0.png';
+import Blur50 from './assets/blur/50.png';
+import Blur100 from './assets/blur/100.png';
+import {CustomIcon} from "../../../custom-icon";
 
 export interface BlurQuestionExtraData {
   intensity: number
@@ -32,6 +35,21 @@ export const BlurQuestion: IQuestion<YesNoQuestionIds, BlurQuestionExtraData> = 
               max={5}
               value={value}
               step={0.1}
+              className={''}
+              marks={[
+                {
+                  value: 0,
+                  label: <CustomIcon src={Blur0}/>
+                },
+                {
+                  value: 2.5,
+                  label: <CustomIcon src={Blur50}/>
+                },
+                {
+                  value: 5,
+                  label: <CustomIcon src={Blur100}/>
+                }
+              ]}
               onChange={(e, v) => setExtraData({intensity: v as number})}
             /></Box>)
       }
