@@ -1,0 +1,28 @@
+.half {
+    height: 50%;
+    overflow: auto;
+}
+
+.half.first {
+
+}
+
+.half.second {
+
+}
+
+.main-container {
+    display: flex;
+    flex-flow: column;
+}
+
+@media screen and (orientation: landscape) {
+    .main-container {
+        flex-flow: row-reverse;
+    }
+    .half {
+        height: 100%;
+        width: 50%;
+        overflow: auto;
+    }
+}

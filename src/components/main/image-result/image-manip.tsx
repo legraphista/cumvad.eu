@@ -16,7 +16,8 @@ import {CanvasRender} from "./canvas-render";
 const useStyles = makeStyles(theme => ({
   fsItem: {
     background: theme.palette.background.default,
-    position: 'relative'
+    position: 'relative',
+    height: '100%'
   },
   actionButton: {
     fontSize: '48px',
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   zoomArea: {
     zIndex: 0,
     width: '100%',
-    // height: '100%'
+    height: 'calc(100% - 55px)'
   },
   screenHeight: {
     height: '100vh'
@@ -146,7 +147,6 @@ export const ImageManip = observer(() => {
 
   useEffect(() => {
     const fullscreenChange = () => {
-      setImageCollapsed(false);
       setIsFullScreen(!!document.fullscreenElement);
     };
     document.addEventListener("fullscreenchange", fullscreenChange);
@@ -159,7 +159,6 @@ export const ImageManip = observer(() => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [imageCollapsed, setImageCollapsed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [currentImage, setCurrentImage] = useState(defaultImages.angles);
@@ -167,15 +166,6 @@ export const ImageManip = observer(() => {
   return (
     <div ref={canvasHolderRef} className={classes.fsItem}>
 
-      {!isFullScreen ?
-        <ArrowUpward
-          onClick={() => setImageCollapsed(!imageCollapsed)}
-          className={[classes.actionButton, classes.left].join(' ')}
-          style={{
-            transform: imageCollapsed ? '' : 'rotate(180deg)',
-            transition: 'transform .3s ease-out',
-          }}
-        /> : null}
 
       {!isFullScreen ?
         <Fullscreen
@@ -211,7 +201,6 @@ export const ImageManip = observer(() => {
           onClick={() => state.setShowOriginal(false)}
         /> : null}
 
-      <Collapse in={!imageCollapsed} collapsedHeight={'120px'}>
         <Tabs
           value={tabValue}
           onChange={(e, v) => setTabValue(v)}
@@ -259,7 +248,6 @@ export const ImageManip = observer(() => {
             currentImage={currentImage}
           />
         </PinchToZoom>
-      </Collapse>
     </div>
   );
 })
