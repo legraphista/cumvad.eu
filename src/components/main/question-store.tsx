@@ -52,6 +52,7 @@ class QuestionStoreClass {
     requestAnimationFrame(() => {
       if (this.registeredImage && this.registeredCanvas) {
         renderCanvas(this.registeredImage, this.questions, this.registeredCanvas, this.showOriginal)
+          .catch(console.error);
       }
     });
   }

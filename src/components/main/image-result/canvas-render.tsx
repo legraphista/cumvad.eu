@@ -64,39 +64,42 @@ async function initCanvas(image: HTMLImageElement, canvasRef: RefObject<HTMLCanv
 }
 
 let last_render: string = uuid();
+const backBuffer = document.createElement('canvas');
+const backBufferCtx = backBuffer.getContext('2d');
 
 export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in QuestionIDs]: IQuestion<any> }), canvasRef: RefObject<HTMLCanvasElement>, showOriginal: boolean) {
   const this_render = uuid();
   last_render = this_render;
 
   if (!canvasRef.current) {
-    console.warn('we don\'t have a canvas yet!');
+    console.warn('we don\'t have a frontBuffer yet!');
     return;
   }
 
-  const canvas = canvasRef.current;
+  const frontBuffer = canvasRef.current;
+  backBuffer.width = frontBuffer.width;
+  backBuffer.height = frontBuffer.height;
 
-  const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    console.warn('we don\'t have a ctx yet!');
+  if (!backBufferCtx) {
+    console.warn('we don\'t have a backBufferCtx yet!');
     return;
   }
   const imageWidth = image.width;
   const imageHeight = image.height;
 
-  console.log('rendering canvas', new Date());
+  console.log('rendering backBufferCtx', new Date());
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'white';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  backBufferCtx.clearRect(0, 0, frontBuffer.width, frontBuffer.height);
+  backBufferCtx.fillStyle = 'white';
+  backBufferCtx.fillRect(0, 0, frontBuffer.width, frontBuffer.height);
 
-  ctx.imageSmoothingEnabled = false;
-  // ctx.imageSmoothingQuality = "high";
-  ctx.drawImage(image,
+  backBufferCtx.imageSmoothingEnabled = false;
+  // backBufferCtx.imageSmoothingQuality = "high";
+  backBufferCtx.drawImage(image,
     0, 0,
     imageWidth, imageHeight,
     0, 0,
-    canvas.width, canvas.height);
+    frontBuffer.width, frontBuffer.height);
 
   if (!showOriginal) {
     const qlist = Object.keys(questions).map((q_id) => questions[q_id as QuestionIDs])
@@ -110,17 +113,26 @@ export async function renderCanvas(image: HTMLImageElement, questions: ({ [s in 
       if (last_render === this_render) {
         const key = `canvas-${q.question.id}`;
         console.time(key);
-        q.effect(ctx, q.selected, {
+        q.effect(backBufferCtx, q.selected, {
           original: image
         });
         console.timeEnd(key);
       } else {
         console.log('break render', this_render, last_render);
-        break;
+        return ;
       }
     }
   }
 
+  const frontBufferCtx = frontBuffer.getContext('2d');
+
+  if (!frontBufferCtx) {
+    console.warn('we don\'t have a frontBufferCtx yet!');
+    return;
+  }
+
+  console.log('backBuffer -> frontBufferCtx');
+  frontBufferCtx.drawImage(backBuffer, 0, 0);
 
 }
 

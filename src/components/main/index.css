@@ -1,5 +1,6 @@
 .half {
     height: 50%;
+    width: 100%;
     overflow: auto;
 }
 
@@ -16,7 +17,7 @@
     flex-flow: column;
 }
 
-@media screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
     .main-container {
         flex-flow: row-reverse;
     }
