@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/cumvad.eu/static/css/main.4e32aa64.chunk.css",
-    "main.js": "/cumvad.eu/static/js/main.38c8a400.chunk.js",
-    "main.js.map": "/cumvad.eu/static/js/main.38c8a400.chunk.js.map",
+    "main.css": "/cumvad.eu/static/css/main.eec07e60.chunk.css",
+    "main.js": "/cumvad.eu/static/js/main.3589e01b.chunk.js",
+    "main.js.map": "/cumvad.eu/static/js/main.3589e01b.chunk.js.map",
     "runtime~main.js": "/cumvad.eu/static/js/runtime~main.78d1caa8.js",
     "runtime~main.js.map": "/cumvad.eu/static/js/runtime~main.78d1caa8.js.map",
-    "static/js/2.e4161383.chunk.js": "/cumvad.eu/static/js/2.e4161383.chunk.js",
-    "static/js/2.e4161383.chunk.js.map": "/cumvad.eu/static/js/2.e4161383.chunk.js.map",
+    "static/js/2.a1118839.chunk.js": "/cumvad.eu/static/js/2.a1118839.chunk.js",
+    "static/js/2.a1118839.chunk.js.map": "/cumvad.eu/static/js/2.a1118839.chunk.js.map",
     "index.html": "/cumvad.eu/index.html",
-    "precache-manifest.9df9a942993e31a0e41b38bcad61fdaa.js": "/cumvad.eu/precache-manifest.9df9a942993e31a0e41b38bcad61fdaa.js",
+    "precache-manifest.eef13b5802dbb0560b0107f85dd237e6.js": "/cumvad.eu/precache-manifest.eef13b5802dbb0560b0107f85dd237e6.js",
     "service-worker.js": "/cumvad.eu/service-worker.js",
-    "static/css/main.4e32aa64.chunk.css.map": "/cumvad.eu/static/css/main.4e32aa64.chunk.css.map",
+    "static/css/main.eec07e60.chunk.css.map": "/cumvad.eu/static/css/main.eec07e60.chunk.css.map",
     "static/media/angles.png": "/cumvad.eu/static/media/angles.062caee1.png",
     "static/media/panel.png": "/cumvad.eu/static/media/panel.c5657b9f.png"
   }

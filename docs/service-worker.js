@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cumvad.eu/precache-manifest.9df9a942993e31a0e41b38bcad61fdaa.js"
+  "/cumvad.eu/precache-manifest.eef13b5802dbb0560b0107f85dd237e6.js"
 );
 
 self.addEventListener('message', (event) => {
